@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa de 40 Anos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<header>
+    <div class="header-overlay"></div>
+    <div class="header-content">
+    <img src= "img/aniversario-correto.jpg" alt="Foto da Aniversariante" class="foto-aniversariante">
+    <h1 class="header-text">Meus 40 anos!</h1>
+</header>
+<body>
+   
+    <div class="container">
+        <h2>Venha comemorar comigo!</h2>
+        <p><strong>Data:</strong> 20 de Julho de 2025</p>
+        <p><strong>Local:</strong> Espaço Celebrar, Rua da Alegria, 123</p>
+
+        <div id="countdown"></div>
+
+        <div class="mapa">
+            <iframe 
+                width="100%" height="300" 
+                src="https://www.google.com/maps/embed?" 
+                style="border:0;" allowfullscreen>
+            </iframe>
+        </div>
+
+        <h2>Confirme sua presença</h2>
+        <div class="rsvp-form">
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Confirmar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Festa de 40 anos | Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Contador regressivo para a data da festa
+        function iniciarContador() {
+            const dataFesta = new Date("May 03, 2025 00:00:00").getTime();
+            const x = setInterval(() => {
+                const agora = new Date().getTime();
+                const distancia = dataFesta - agora;
+
+                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = `Faltam ${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+
+                if (distancia < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "A festa começou!";
+                }
+            }, 1000);
+        }
+
+        iniciarContador();
+    </script>
+</body>
+</html>
